@@ -4,9 +4,16 @@ import sociopath from "./images/sociopath.png";
 import Posts from "./components/Posts/posts";
 import Form from "./components/Form/Form";
 import useStyles from "./styles";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getPosts } from "./actions/PostAction";
 
 const App = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
+  useEffect(() => {
+    dispatch(getPosts);
+  }, [dispatch]);
   return (
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
