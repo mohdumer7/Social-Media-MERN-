@@ -1,5 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
+import { Grid } from "@material-ui/core";
 import useStyles from "./styles";
 import { useSelector } from "react-redux";
 
