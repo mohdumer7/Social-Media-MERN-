@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.68e3fce4.css",
+    "main.js": "/static/js/main.959f258d.js",
+    "static/media/sociopath.png": "/static/media/sociopath.25c703f9189baf6436d4.png",
+    "index.html": "/index.html",
+    "main.68e3fce4.css.map": "/static/css/main.68e3fce4.css.map",
+    "main.959f258d.js.map": "/static/js/main.959f258d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.68e3fce4.css",
+    "static/js/main.959f258d.js"
+  ]
+}
