@@ -4,7 +4,7 @@ This is a Social Media Full Stack Application built with MERN Stack That has Ful
 The App has both client and server side code for data storage on mongo cloud.
 
 Functionalities added:-
-CREATE POST
+CREATE POST \n
 UPDATE POST
 LIKE POST
 DELETE POST
