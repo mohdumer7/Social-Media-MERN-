@@ -11,7 +11,7 @@ export const CreatePost = async (newPost) => {
 };
 
 export const updatedPost = async (id, updatedPost) => {
-  await axios.patch(`${url}/${id}`, updatedPost);
+  return await axios.patch(`${url}/${id}`, updatedPost);
 };
 
 export const deletePost = async (id) => {
