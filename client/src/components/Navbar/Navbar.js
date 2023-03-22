@@ -2,7 +2,7 @@ import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import sociopath from "../../images/sociopath.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -20,7 +21,7 @@ const Navbar = () => {
   useEffect(() => {
     const token = user?.token;
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, []);
+  }, [location]);
 
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">

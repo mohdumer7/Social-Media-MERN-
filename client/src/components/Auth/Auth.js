@@ -15,6 +15,15 @@ import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import Icon from "./Icon";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signin, signup } from "../../actions/authActions";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const Auth = () => {
   const classes = useStyles();
@@ -22,9 +31,19 @@ const Auth = () => {
   const [isSignup, setIsSignUp] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialState);
 
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
   const handleShowPassword = () => {
     setShowPassword((prevState) => !prevState);
   };
