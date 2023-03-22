@@ -6,21 +6,25 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Posts from "./components/Posts/posts";
 import Form from "./components/Form/Form";
 
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Container maxWidth="lg">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/auth" element={<Auth />} exact />
-        </Routes>
-      </Container>
-    </BrowserRouter>
+    <GoogleOAuthProvider clientId="226305144706-370qckcrvn9aognig3ipn65ef705g2jm.apps.googleusercontent.com">
+      <BrowserRouter>
+        <Container maxWidth="lg">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} exact />
+            <Route path="/auth" element={<Auth />} exact />
+          </Routes>
+        </Container>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 };
 
