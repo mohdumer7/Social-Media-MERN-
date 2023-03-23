@@ -1,24 +1,39 @@
 import axios from "axios";
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
-const url = "http://localhost:5000/posts";
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem("profile")) {
+    req.headers.Authorization = `Bearer ${
+      JSON.parse(localStorage.getItem("profile")).data.token
+    }`;
+  }
+  console.log(req.headers);
+  return req;
+});
+
+// const url = "http://localhost:5000/posts";
 // const url = "https://sociopath.onrender.com/posts";
 
 export const fetchPosts = async () => {
-  return await axios.get(url);
+  return await API.get("/posts");
 };
 
 export const CreatePost = async (newPost) => {
-  return axios.post(url, newPost);
+  return API.post("/posts", newPost);
 };
 
 export const updatedPost = async (id, updatedPost) => {
-  return await axios.patch(`${url}/${id}`, updatedPost);
+  return await API.patch(`/posts/${id}`, updatedPost);
 };
 
 export const deletePost = async (id) => {
-  await axios.delete(`${url}/${id}`);
+  await API.delete(`/posts/${id}`);
 };
 
 export const likePost = async (id) => {
-  return await axios.patch(`${url}/${id}/likePost`);
+  return await API.patch(`/posts/${id}/likePost`);
 };
+
+export const signin = (formData) => API.post("/users/signin", formData);
+
+export const signup = (formData) => API.post("/users/signup", formData);

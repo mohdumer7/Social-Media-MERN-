@@ -6,9 +6,11 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/PostAction";
 
 import { useSelector } from "react-redux";
+import { json } from "react-router-dom";
 
 const Form = (props) => {
   const { currentId, setCurrentId } = props;
+  const user = JSON.parse(localStorage.getItem("profile"));
 
   const post = useSelector((state) =>
     currentId ? state.posts.find((p) => p._id === currentId) : null
@@ -22,7 +24,6 @@ const Form = (props) => {
   }, [post]);
 
   const [postData, setPostData] = useState({
-    creator: "",
     title: "",
     message: "",
     tags: "",
@@ -33,9 +34,11 @@ const Form = (props) => {
     e.preventDefault();
 
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.data.result.name })
+      );
     } else {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.data.result.name }));
     }
     clear();
   };
@@ -44,14 +47,21 @@ const Form = (props) => {
     setCurrentId(null);
     console.log("HERE");
     setPostData({
-      creator: "",
       title: "",
       message: "",
       tags: "",
       selectedFile: "",
     });
   };
-
+  if (!user?.data.result?.name) {
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please Sign In in to create your own POST..!!
+        </Typography>
+      </Paper>
+    );
+  }
   return (
     <Paper className={classes.paper}>
       <form
@@ -63,16 +73,7 @@ const Form = (props) => {
         <Typography variant="h6">
           {currentId ? "Editing This Post" : "Create a Post"}
         </Typography>
-        <TextField
-          name="creator"
-          variant="outlined"
-          label="creator"
-          fullWidth
-          value={postData.creator}
-          onChange={(e) =>
-            setPostData({ ...postData, creator: e.target.value })
-          }
-        />
+
         <TextField
           name="title"
           variant="outlined"
