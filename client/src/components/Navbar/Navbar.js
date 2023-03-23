@@ -52,7 +52,7 @@ const Navbar = () => {
           <div className={classes.profile}>
             <Avatar
               className={classes.purple}
-              alt={user.data.result.name}
+              alt={user.data?.result?.name}
               src={user.data.result.imageUrl}
             >
               {user.data.result.name.charAt(0)}
