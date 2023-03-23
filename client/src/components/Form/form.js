@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/PostAction";
 
 import { useSelector } from "react-redux";
-import { json } from "react-router-dom";
 
 const Form = (props) => {
   const { currentId, setCurrentId } = props;
@@ -21,7 +20,7 @@ const Form = (props) => {
 
   useEffect(() => {
     if (post) setPostData(post);
-  }, [post]);
+  }, [post, user]);
 
   const [postData, setPostData] = useState({
     title: "",
