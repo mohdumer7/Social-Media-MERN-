@@ -7,6 +7,7 @@ import {
   FETCH_BY_SEARCH,
   START_LOADING,
   END_LOADING,
+  FETCH_POST,
 } from "../constants/actionTypes";
 
 export default (state = { isLoading: true, posts: [] }, action) => {
@@ -18,6 +19,8 @@ export default (state = { isLoading: true, posts: [] }, action) => {
         currentPage: action.payload.currentPage,
         numberofPages: action.payload.numberOfPages,
       };
+    case FETCH_POST:
+      return { ...state, post: action.payload };
 
     case CREATE:
       return { ...state, posts: [...state.posts, action.payload] };

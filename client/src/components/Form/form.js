@@ -6,13 +6,15 @@ import { useDispatch } from "react-redux";
 import { createPost, updatePost } from "../../actions/PostAction";
 
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Form = (props) => {
   const { currentId, setCurrentId } = props;
   const user = JSON.parse(localStorage.getItem("profile"));
+  const navigate = useNavigate();
 
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.posts.posts.find((p) => p._id === currentId) : null
   );
 
   const classes = useStyles();
@@ -37,8 +39,11 @@ const Form = (props) => {
         updatePost(currentId, { ...postData, name: user?.data.result.name })
       );
     } else {
-      dispatch(createPost({ ...postData, name: user?.data.result.name }));
+      dispatch(
+        createPost({ ...postData, name: user?.data.result.name }, navigate)
+      );
     }
+
     clear();
   };
 
@@ -62,7 +67,7 @@ const Form = (props) => {
     );
   }
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={6}>
       <form
         autoComplete="off"
         noValidate

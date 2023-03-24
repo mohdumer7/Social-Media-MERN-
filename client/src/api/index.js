@@ -1,6 +1,6 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "http://localhost:5000" });
-// const API = axios.create({ baseURL: "https://sociopath.onrender.com" });
+// const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://sociopath.onrender.com" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -14,6 +14,10 @@ API.interceptors.request.use((req) => {
 
 // const url = "http://localhost:5000/posts";
 // const url = "https://sociopath.onrender.com/posts";
+
+export const fetchPost = async (id) => {
+  return await API.get(`/posts/${id}`);
+};
 
 export const fetchPosts = async (page) => {
   return await API.get(`/posts?page=${page}`);
