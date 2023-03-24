@@ -15,8 +15,8 @@ API.interceptors.request.use((req) => {
 // const url = "http://localhost:5000/posts";
 // const url = "https://sociopath.onrender.com/posts";
 
-export const fetchPosts = async () => {
-  return await API.get("/posts");
+export const fetchPosts = async (page) => {
+  return await API.get(`/posts?page=${page}`);
 };
 
 export const fetchPostsBySearch = async (searchQuery) => {

@@ -1,7 +1,8 @@
 import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
-import sociopath from "../../images/sociopath.png";
+// import sociopath from "../../images/sociopath.png";
+import sociopath from "../../images/logo (1).png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import decode from "jwt-decode";
@@ -31,21 +32,14 @@ const Navbar = () => {
   return (
     <AppBar className={classes.appBar} position="static" color="inherit">
       <div className={classes.brandContainer}>
-        <Typography
-          variant="h2"
-          align="center"
-          className={classes.heading}
-          component={Link}
-          to="/"
-        >
-          SocioPath
-        </Typography>
-        <img
-          src={sociopath}
-          alt="sociopath"
-          height="100"
-          className={classes.image}
-        />
+        <Link to="/">
+          <img
+            src={sociopath}
+            alt="sociopath"
+            height="80"
+            className={classes.image}
+          />
+        </Link>
       </div>
       <Toolbar className={classes.toolbar}>
         {user ? (

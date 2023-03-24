@@ -54,7 +54,7 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.card} raised elevation={6}>
       <CardMedia
         className={classes.media}
         image={post.selectedFile}

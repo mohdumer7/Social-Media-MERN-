@@ -32,6 +32,9 @@ const Home = (props) => {
   const [search, setSearch] = useState("");
   const [tags, setTags] = useState([]);
 
+  const page = query.get("page") || 1;
+  const searchQuery = query.get("searchQuery");
+
   const handleAdd = (tag) => {
     setTags([...tags, tag]);
   };
@@ -41,13 +44,6 @@ const Home = (props) => {
   };
 
   //to check if the parameter "Page" exists in the URL.
-
-  const page = query.get("page") || 1;
-  const searchQuery = query.get("searchQuery");
-
-  useEffect(() => {
-    dispatch(getPosts);
-  }, [currentId, dispatch]);
 
   const handleKeyPress = (e) => {
     //keycode 1e is the enter key
@@ -116,7 +112,7 @@ const Home = (props) => {
             </AppBar>
             <Form currentId={currentId} setCurrentId={setCurrentId} />
             <Paper className={classes.pagination} elevation={6}>
-              <Pagination />
+              <Pagination page={page} />
             </Paper>
           </Grid>
         </Grid>
