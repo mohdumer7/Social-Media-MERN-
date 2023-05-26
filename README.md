@@ -1,6 +1,6 @@
 # Social-Media-MERN-
 
-[social-media-mern.netlify.app/](social-media-mern.netlify.app/)
+[social-media-mern.netlify.app/](https://social-media-mern.netlify.app/posts)
 
 This is a Social Media Full Stack Application built with MERN Stack That has Full CRUD and JWT Authentication. 
 
@@ -16,6 +16,6 @@ AUTHORIZATION
 POST Details
 ```
 
-[Visit the Website](social-media-mern.netlify.app/)
+[Visit the Website](https://social-media-mern.netlify.app/posts)
 
 # Hope You Like it...Enjoy..!!
